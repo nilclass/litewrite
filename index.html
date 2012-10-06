@@ -4,12 +4,16 @@
 	<meta charset="utf-8">
 	<title>Litewrite</title>
 	<meta name="description" content="unobtrusive writing">
-	<link rel="stylesheet" href="css/litewrite.css">
  	<link rel="shortcut icon" href="img/litewrite.png">
  	<link rel="apple-touch-icon-precomposed" href="img/litewrite-touch.png">
+ 	<link rel="stylesheet" href="css/codemirror.css">
+	<link rel="stylesheet" href="css/litewrite.css">
+	<script src="js/lib/codemirror.js"></script>
+	<script src="js/lib/markdown.js"></script>
 </head>
 <body>
-	<div id="editor" placeholder="Write …" class="editor" contenteditable></div>
+
+	<textarea class="editor" id="editor" name="editor"></textarea>
 	<aside id="aside" class="visible">
 		<div id="add" class="add"><span class="add-plus">+</span><span class="add-text">New document</span></div>
 		<ul id="entries" class="entries"></ul>
@@ -20,5 +24,13 @@
 	</aside>
 
 	<script src="js/lib/require.js" data-main="js/main"></script>
+	<script>
+	var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+		mode:'markdown',
+		lineNumbers:false,
+		matchBrackets:false,
+		theme:'default'
+	});
+	</script>
 </body>
 </html>

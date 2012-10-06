@@ -7,13 +7,14 @@ html, body {
 @font-face { font-family:'Alegreya'; font-weight:normal; src:url(Alegreya-Regular.ttf); }
 @font-face { font-family:'Alegreya'; font-weight:bold; src:url(Alegreya-Bold.ttf); }
 
-.editor {
+.editor { display:none !important; }
+.CodeMirror {
 	-moz-box-sizing:border-box; -webkit-box-sizing:border-box; -ms-box-sizing: border-box; box-sizing:border-box;
 	position:absolute; width:100%; height:100%; padding:5% 20% 20%;
 	font:normal 1.7em/150% 'Alegreya',Georgia,serif;
 	outline:none; overflow:auto; border:none; resize:none;
 }
-.editor:first-line { font-size:2em; line-height:2.4em; font-weight:bold; } /* need to fix this for when it's a div */
+.CodeMirror:first-line, .cm-header { font-size:2em; line-height:2.4em; font-weight:bold; } /* need to fix this for when it's a div */
 
 aside {
 	-moz-box-sizing:border-box; -webkit-box-sizing:border-box; -ms-box-sizing: border-box; box-sizing:border-box;

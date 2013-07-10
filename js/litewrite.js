@@ -21,25 +21,23 @@ define(function(require) {
       docs.reset().addNew();
     });
 
-    remoteStorage.claimAccess('documents', 'rw').then(function() {
-      remoteStorage.documents.init();
-      remoteStorage.displayWidget('remotestorage-connect');
+    remoteStorage.claimAccess('documents', 'rw');
+    remoteStorage.documents.init();
+    remoteStorage.displayWidget('remotestorage-connect');
 
-      remoteStorageDocuments.onChange('notes', function(event) {
-        if(event.origin !== 'window') {
-          fetch();
-        }
-      });
-
-      setTimeout(function() {
-        var md = origHash.match(/access_token=([^&]+)/);
-        if(md && (! remoteStorage.getBearerToken())) {
-          // backbone stole our access token
-          remoteStorage.setBearerToken(md[1]);
-        }
-      }, 0);
-
+    remoteStorageDocuments.onChange('notes', function(event) {
+      if(event.origin !== 'window') {
+        fetch();
+      }
     });
+
+    setTimeout(function() {
+      var md = origHash.match(/access_token=([^&]+)/);
+      if(md && (! remoteStorage.getBearerToken())) {
+        // backbone stole our access token
+        remoteStorage.setBearerToken(md[1]);
+      }
+    }, 0);
 
     settings
       .on('change:openDocId', saveDocAndChange)

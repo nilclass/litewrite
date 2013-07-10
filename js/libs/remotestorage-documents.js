@@ -7,7 +7,7 @@ define(function(require) {
 
   var moduleName = 'documents';
 
-  remoteStorage.defineModule(moduleName, function(myBaseClient) {
+  RemoteStorage.defineModule(moduleName, function(myBaseClient) {
     var errorHandlers=[];
     function fire(eventType, eventObj) {
       if(eventType == 'error') {
@@ -31,7 +31,7 @@ define(function(require) {
       return uuid;
     }
     function getPrivateList(listName) {
-      myBaseClient.use(listName+'/');
+      myBaseClient.cache(listName+'/');
       function getIds() {
         return myBaseClient.getListing(listName+'/');
       }
@@ -110,9 +110,9 @@ define(function(require) {
 
       exports: {
         init: function() {
-          myBaseClient.release('');
+          myBaseClient.cache('', false);
           //publicClient.release('');
-          myBaseClient.use('notes/');
+          myBaseClient.cache('notes/');
         },
 
         getPrivateList: getPrivateList,
